@@ -1,33 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ContentSidebar from 'box-ui-elements/es/elements/content-sidebar'
+import ContentPreview from 'box-ui-elements/es/elements/content-preview'
+
+import { TOKEN, FILE_ID, FEATURE_FLAGS } from "./constants";
+
+import './App.scss';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div>V5 React Router DOM</div>
+      <div className='elementSection'>
+        <ContentSidebar
+            token={TOKEN}
+            fileId={FILE_ID}
+            detailsSidebarProps={{
+              hasProperties: true,
+              hasNotices: true,
+              hasAccessStats: true,
+              hasClassification: true,
+              hasRetentionPolicy: true,
+            }}
+            features={FEATURE_FLAGS}
+            hasNav
+            hasActivityFeed
+            hasMetadata
+            hasSkills
+            hasVersions
+          />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <hr />
+      <div className='elementSection'>
+        <ContentPreview
+          features={null}
+          token={TOKEN}
+          fileId={FILE_ID}
+          hasHeader
+          contentAnswersProps={{
+            show: true,
+          }}
+          contentSidebarProps={{
+            detailsSidebarProps: {
+                hasAccessStats: true,
+                hasClassification: true,
+                hasNotices: true,
+                hasProperties: true,
+                hasRetentionPolicy: true,
+                hasVersions: true,
+            },
+            features: null,
+            hasActivityFeed: true,
+            hasMetadata: true,
+            hasSkills: true,
+            hasVersions: true,
+          }}
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
